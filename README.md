@@ -58,6 +58,37 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + on()
 	+ 이벤트를 받음
 
+### `노드의 기본 기능 알아보기2` -21.03.29(월)
+
+👾 파일을 읽어 출력해보기
+**✔️ fs 모듈**을 require로 불러와 변수에 할당.
++ fs.readFileSync() : file을 다 읽을 때까지 대기 (동기식)
++ fs.readFile() : file을 다 읽을 때까지 대기하지 않고, 다 읽으면 콜백함수 실행 (비동기식)
+
+👾 파일을 만들고 쓰기
++ fs.writeFile('경로', '내용', 콜백함수) 를 통해 파일 쓰기 가능
+
+👾 파일을 직접 열고 닫으면서 읽거나 쓰기
++ open(path, flags, [, mode][, callback])
+	+ mode: w, r 로 읽거나 쓰기 권한 부여
++ read (fd, buffer, offset(index), length, position [, callback])
+	+ fd: 콜백 함수 파라미터로 전달받은 fd
++ write (fd, buffer, offset, length, position [, callback])
++ close (fd [, callback])
+
+**✔️ Buffer**
++ 데이터를 다른 곳으로 전송할 때 일시적으로 보관하는 메모리 영역
+
+**✔️ stream**
++ 연속된 byte를 받아들이는 통로
+
+👾 로그 파일 남기기
++ winston 외장 모듈 사용
+
+
+
+
+
 
 
 
