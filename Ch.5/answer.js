@@ -10,7 +10,7 @@ server.listen(port, host, 50000, () => {
 
 server.on('connection', (socket) => { // connection 이벤트 발생시 함수 실행
 	console.log(`클라이언트 socket이 접속함.`);
-});
+});``
 
 server.on('request', (req, res)=> { // request 이벤트 발생 시 req, res 파라미터로 받음.
 	// req = 요청 객체, res = 응답 객체
