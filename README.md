@@ -122,13 +122,13 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 
 ### `express로 웹 서버 만들기` -21.04.01(목)
 **✔️ express**
-+ 미둘웨어, 라우터 기능에 집중하기.
++ 미들웨어, 라우터 기능에 집중하기.
 + express는 http 모듈을 무조건 씀.
 + express 모듈로 반환된 객체를 함수로 실행해 변수에 담으면 express server 객체가 됨.
-	+ **.set()로 포트 설정하기**
+	+ **.set()**로 포트 설정하기
 	+ .set('port', process.env.PORT || 3000)
 	+ http.createServer() 인자로 port 설정한 변수를 담으면 express 서버가 만들어짐.
-	+ **.get()로 포트 정보 가져오기**
+	+ **.get()**로 포트 정보 가져오기
 	+ .get('port')
 
 👾 클라이언트가 요청을 보낼 때 응답 받기
@@ -146,7 +146,7 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + **요청 path와 요청 parameter**
 	+ http://localhost:3000 = ip와 port 번호
 	+ http://localhost:3000/users = 특정 경로 = 요청 path
-	+ http://localhost:3000/users ? name = mike  = ? 뒤에 키와 값은 요청 parameter
+	+ http://localhost:3000/users?name=mike  = ? 뒤에 키와 값은 요청 parameter
 		+ & 로 연결
 		+ 👉🏻 주소창에 요청 parameter가 바로 보이는 방식: get
 		+ req.query. => get 방식으로 전송한 파라미터 확인
@@ -157,6 +157,33 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + **router**
 	+ 요청 path에 따라 다른 함수가 실행되도록 만듦. 
 	+ ex) / path > A 함수, /users > B 함수
+
+
+### `미들웨어 사용하기` -21.04.02(금)
+👾 미들웨어<br>
+우리가 일일이 만들지 않고, 남들이 만들어놓은 미들웨어들을 사용해보자<br>
++ **static 미들웨어**
+	+ require('serve-static')
+	+ 특정 폴더를 오픈하고 싶을 경우
+	+ 웹 브라우저나 클라이언트가 웹 서버의 파일들을 아무거나 가져가면 안되기 때문에<br>
+	특정한 폴더만 열어주는 역할을 한다.
+		+ path.join()으로 경로 설정
+		+ path는 외장모듈이라 require 해줘야 함.
+		+ 1번째 인자 👉🏻__dirname: 현재 파일이 실행되는 폴더의 path를 의미.
+		+ 2번째 인자 👉🏻 '폴더 이름' : 노출을 허용할 폴더명
+		+ 현재 폴더의 상대경로를 정확히 표현하고 싶다면 use()의 1번째 인자로 경로를 넣어줌.
+			+ app.use('폴더경로', static(path.join(__dirname, '폴더이름'')))
++ **body parser**
+	+ post 방식 요청을 받을 때는 bodyParser 외장 모듈을 사용해야 함. 설치 필요
+	+ app.use(bodyParser.urlencoded({extended: false}))
+	+ app.use(bodyParser.json());
+	+ post 방식은 header에 바로 정보를 주는게 아니라 바디안에 넣기 때문에 bodyParser가 필요한 것.
+	+ req.body.name || req.query.name 👉🏻 post 방식이 아니면 get 방식으로 받아라
++ **postman**
+	+ post 방식으로 요청할 때 사용하는 테스트 툴
+
+
+
 
 
 
