@@ -125,10 +125,10 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + 미들웨어, 라우터 기능에 집중하기.
 + express는 http 모듈을 무조건 씀.
 + express 모듈로 반환된 객체를 함수로 실행해 변수에 담으면 express server 객체가 됨.
-	+ **.set()**로 포트 설정하기
+	+ **set()**로 포트 설정하기
 	+ .set('port', process.env.PORT || 3000)
 	+ http.createServer() 인자로 port 설정한 변수를 담으면 express 서버가 만들어짐.
-	+ **.get()**로 포트 정보 가져오기
+	+ **get()**로 포트 정보 가져오기
 	+ .get('port')
 
 👾 클라이언트가 요청을 보낼 때 응답 받기
@@ -183,6 +183,38 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 	+ post 방식으로 요청할 때 사용하는 테스트 툴
 
 
+### `요청 라우팅하기` -21.04.05(월)
+👾 Router<br>
+각각의 요청 path 별로 다른 처리를 할 수 있게 함.<br>
++ let router = express.Router() 
++ app.use('/', router) 미들웨어로 등록
++ 위 두 코드 사이에 router 사용
+	+ router.route(요청 path).post(function (req, res) {})<br>
+	👉🏻  미들웨어처럼 모든 걸 받는게 아니라 요청 path로 들어온 req만 받음
++ **url parameter**
+	+ 요청 path에 parameter를 넣는 형식
+	+ let paramName = req.params.name; 👉🏻 req 안에 params라는 객체 안에 들어감
+	+ 방법:
+		+ 요청시: action="/process/login/mike"
+		+ 응답시: router.route('/process/login/:name').post( (req, res)=> {
+👾 오류 텍스트 보여주기
++ app.all('*', (req, res) => {
+	res.status(404).send(화면에 표시할 내용)
+})
+	+ all() : 모든 요청에 대해 콜백 함수를 처리하겠다~
+	+ status(404) : 문서를 찾을 수 없음
+	+ status(200) : 정상
+
++ **express-error-hander** 미들웨어로 오류 페이지 보내기
++ let errHandler = require('express-error-hander');
++ let eH = errHandler({
+	static: {
+		'404': './public/404.html'
+	}
+});
++ app.use(errHadler.httpError(404));
++ app.use(eH);
+		
 
 
 
