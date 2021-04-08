@@ -214,7 +214,43 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 });
 + app.use(errHadler.httpError(404));
 + app.use(eH);
-		
+
+
+### `쿠키와 세션 관리하기` -21.04.08(목)
+👾 쿠키와 세션
+**✔️쿠키**<br>
+	+ 클라이언트 웹 브라우저에 저장되는 정보.
+	+ 사용방법:
+		+ cookie-parser 미들웨어 사용
+		+ let cookieParser = require('cookie-parser');
+		+ cookie-parser 설정: app.use(cookieParser());
+		+ res 객체의 cookie() 👉🏻 웹 브라우저에 이 내용을 저장해줘!
+			+ ex) res.cookie(user, {내용}) 👉🏻 개발자도구 application Cookies 	부분에 user 키 값으로 저장되어 있음!
+		+ req 객체의 cookies로 설정된 쿠키 정보 확인
+		+ redirect() : 다른 path로 옮김
+
+**✔️세션**<br>
+	+ 웹 서버에 저장되는 정보
+	+ 로그인, 로그아웃 등을 위해 사용.
+	+ 세션은 쿠키를 같이 사용하기 때문에 cookie-parser가 필요.
+		+ Cookies로 들어가보면 connect.sid로 세션이 만들어짐.
+	+ let expressSession = require('express-session');
+
+	+ 로그인하면 세션이 만들어지고, 로그아웃하면 세션이 삭제되도록 만들어보자!
+		+ 개요: 세션 정보가 있으면 상품 페이지로, 없으면 로그인 유도
+		+ 로그인 성공하면 상품 페이지로 다시 넘겨줌.
+		+ 로그아웃을 하면 세션의 user 정보를 없애서 다시 상품페이지로 들어가면 로그인 페이지로 유도
+			+ req 객체의 session으로 설정된 세션 정보 확인
+			+ if (req.session.user) {redirect(path)} 👉🏻 다른 곳으로 유도
+			+ 로그아웃시 req.session.destroy() 로 세션 정보 삭제
+🔥 사실 로그인, 로그아웃 검증은 **passport**가 알아서 해줌. (나중에 배움)<br>
+
+
+
+
+
+
+
 
 
 
