@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Upload file</title>
+</head>
+<body>
+	<h1>file upload</h1>
+	<br>
+	<form method="post" action="/process/photo" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><label>파일</label></td>
+				<td><input type="file" name="photo"></td> 
+				<!-- name 속성이 요청 파라미터 이름으로 들어감-->
+			</tr>
+		</table>
+		<input type="submit" value="업로드" name="submit">
+	</form>
+</body>
+</html>

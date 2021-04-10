@@ -60,7 +60,7 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 
 ### `노드의 기본 기능 알아보기2` -21.03.29(월)
 
-👾 파일을 읽어 출력해보기
+👾 파일을 읽어 출력해보기<br>
 **✔️ fs 모듈**을 require로 불러와 변수에 할당.
 + fs.readFileSync() : file을 다 읽을 때까지 대기 (동기식)
 + fs.readFile() : file을 다 읽을 때까지 대기하지 않고, 다 읽으면 콜백함수 실행 (비동기식)
@@ -217,33 +217,78 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 
 
 ### `쿠키와 세션 관리하기` -21.04.08(목)
-👾 쿠키와 세션
+👾 쿠키와 세션<br>
 **✔️쿠키**<br>
-	+ 클라이언트 웹 브라우저에 저장되는 정보.
-	+ 사용방법:
-		+ cookie-parser 미들웨어 사용
-		+ let cookieParser = require('cookie-parser');
-		+ cookie-parser 설정: app.use(cookieParser());
-		+ res 객체의 cookie() 👉🏻 웹 브라우저에 이 내용을 저장해줘!
-			+ ex) res.cookie(user, {내용}) 👉🏻 개발자도구 application Cookies 	부분에 user 키 값으로 저장되어 있음!
-		+ req 객체의 cookies로 설정된 쿠키 정보 확인
-		+ redirect() : 다른 path로 옮김
++ 클라이언트 웹 브라우저에 저장되는 정보.
++ 사용방법:
+	+ cookie-parser 미들웨어 사용
+	+ let cookieParser = require('cookie-parser');
+	+ cookie-parser 설정: app.use(cookieParser());
+	+ res 객체의 cookie() 👉🏻 웹 브라우저에 이 내용을 저장해줘!
+		+ ex) res.cookie(user, {내용}) 👉🏻 개발자도구 application Cookies 부분에 user 키 값으로 저장되어 있음!
+	+ req 객체의 cookies로 설정된 쿠키 정보 확인
+	+ redirect() : 다른 path로 옮김
 
 **✔️세션**<br>
-	+ 웹 서버에 저장되는 정보
-	+ 로그인, 로그아웃 등을 위해 사용.
-	+ 세션은 쿠키를 같이 사용하기 때문에 cookie-parser가 필요.
-		+ Cookies로 들어가보면 connect.sid로 세션이 만들어짐.
-	+ let expressSession = require('express-session');
++ 웹 서버에 저장되는 정보
++ 로그인, 로그아웃 등을 위해 사용.
++ 세션은 쿠키를 같이 사용하기 때문에 cookie-parser가 필요.
+	+ Cookies로 들어가보면 connect.sid로 세션이 만들어짐.
++ let expressSession = require('express-session');
 
-	+ 로그인하면 세션이 만들어지고, 로그아웃하면 세션이 삭제되도록 만들어보자!
-		+ 개요: 세션 정보가 있으면 상품 페이지로, 없으면 로그인 유도
-		+ 로그인 성공하면 상품 페이지로 다시 넘겨줌.
-		+ 로그아웃을 하면 세션의 user 정보를 없애서 다시 상품페이지로 들어가면 로그인 페이지로 유도
-			+ req 객체의 session으로 설정된 세션 정보 확인
-			+ if (req.session.user) {redirect(path)} 👉🏻 다른 곳으로 유도
-			+ 로그아웃시 req.session.destroy() 로 세션 정보 삭제
++ 로그인하면 세션이 만들어지고, 로그아웃하면 세션이 삭제되도록 만들어보자!
+	+ 개요: 세션 정보가 있으면 상품 페이지로, 없으면 로그인 유도
+	+ 로그인 성공하면 상품 페이지로 다시 넘겨줌.
+	+ 로그아웃을 하면 세션의 user 정보를 없애서 다시 상품페이지로 들어가면 로그인 페이지로 유도
+		+ req 객체의 session으로 설정된 세션 정보 확인
+		+ if (req.session.user) {redirect(path)} 👉🏻 다른 곳으로 유도
+		+ 로그아웃시 req.session.destroy() 로 세션 정보 삭제
 🔥 사실 로그인, 로그아웃 검증은 **passport**가 알아서 해줌. (나중에 배움)<br>
+
+
+### `파일 업로드 기능 만들기` -21.04.10(토)
+👾 파일 업로드
++ 파일 업로드시 **POST** 방식으로 요청해야 함
+	+ body-parser 미들웨어 사용 필요 
+	+ fs, cors 모듈도 사용
+
++ 파일 업로드용 미들웨어
+	+ <code>let multer = require('multer')</code>
+	+ <code>let fs = require('fs')</code>
+
++ 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
+	+ <code>let cors = require('cors')</code>
+	+ 서버쪽에서 어떤 정보를 option으로 주면 브라우저가 그렇게 접속한 것을 허용~.
+	+ ex) 다른 ip를 가진 곳에서 웹 서버에 접속해 정보를 가져가겠다 할 때 cors 사용.
+
++ 파일을 업로드 하면 어디에 저장되게 할 것임?
+	+ diskStorage({}) 엔진
+		+ post로 전송된 파일의 저장경로와 파일명 등을 처리.
+
++ html 파일에 form 속성으로 <code>enctype='multipart/form-data'</code> 필요.
+	+ 파일을 업로드할 때 multipart 데이터 형식으로 보내기 때문.
+
++ multer에 의해 파일이 업로드되면 req.files 객체안에 들어감.
+
+
+### ⭐️ `웹서버 관련 요약` - 21.04.10(토)
+👾 웹 서버
+	+ 웹 서버가 웹 브라우저로부터 요청(req)을 받아 응답(res)을 줌.
+	+ express로 처리.
+
+👾 응답 처리 방법
+	+ 1. 미들웨어 👉🏻 모든 요청 처리
+	+ 2. 라우터 👉🏻 요청 path에 따라 분기
+	+ 3. 클라이언트가 보내온 데이터를 요청 파라미터로 받아서 처리
+
+👾 쿠키, 세션
+	+ 로그인 등의 정보를 저장. 상태 유지
+
+👾 파일 업로드
+
+
+
+
 
 
 
