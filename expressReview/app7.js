@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
 	console.log('첫번째 미들웨어 호출됨.');
 
-	let paramName = req.body.name || req.query.name;
+	let paramId = req.body.id || req.query.id;
 
-	res.send(`<h1>서버에서 응답: ${paramName}</h1>`);
+	res.send(`<h1>서버에서 응답: ${paramId}</h1>`);
 });
 
 const server = http.createServer(app).listen(app.get('port'), () => {
