@@ -26,6 +26,10 @@ router.route('/process/login').post((req, res) => {
 	res.write(`<div><p>${paramPassword}</p></div>`);
 	res.end();
 });
+
+app.all('*', (req, res) => {
+	res.status(404).send('<h1>요청하신 페이지를 찾을 수 없습니다 ㅜㅅㅜ</h1>')
+})
   
 app.use('/', router);
 
