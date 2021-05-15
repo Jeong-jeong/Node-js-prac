@@ -1,5 +1,5 @@
 # 🐥 병아리부터 시작하는 node.js 바로 알기
-reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/lecture/12534/저자-직강-do-it-node-js-프로그래밍)<br>
+reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/lecture/12534/저자-직강-do-it-node-js-프로그래밍), [Node.js 교과서 by 제로초](https://book.naver.com/bookdb/book_detail.nhn?bid=16418778)<br>
 
 ### `JS의 객체와 함수` -21.03.23(화)
 
@@ -285,6 +285,10 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + 로그인 등의 정보를 저장. 상태 유지
 
 👾 파일 업로드
+
+
+
+
 
 
 
