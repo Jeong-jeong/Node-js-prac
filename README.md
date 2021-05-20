@@ -1,6 +1,7 @@
 # 🐥 병아리부터 시작하는 node.js 바로 알기
 reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/lecture/12534/저자-직강-do-it-node-js-프로그래밍), [Node.js 교과서 by 제로초](https://book.naver.com/bookdb/book_detail.nhn?bid=16418778)<br>
 
+## <Do it! Node.js 프로그래밍>
 ### `JS의 객체와 함수` -21.03.23(화)
 
 ✔️ JS는 **동적타이핑(dynamic type language)** 언어.<br>
@@ -285,6 +286,37 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + 로그인 등의 정보를 저장. 상태 유지
 
 👾 파일 업로드
+
+
+## <Node.js 교과서 개정 2판>
+### ⭐️ `프런트앤드 자바스크립트` - 21.05.20(목)
+👾 AJAX
++ 페이지 이동없이 서버에 요청을 보내고 응답을 받는 기술.
++ AJAX 요청 방법: axios 라이브러리 사용 예정
+	+ axios.get, post => 내부에 new Promise가 들어있어<br>
+then, catch, async, await 사용 가능.
+	+ axios.post는 두번째 인수로 데이터를 넣어 보냄!.
+
+👾 FormData
++ <code>const formData = new FormData()</code>
++ append 메서드로 키 -값 형식의 데이터 저장.
++ has, get, getAll, delete, set
+
+👾 AJAX 요청시 주소에 한글이 있는 경우
++ <code>encodeURIComponent</code> 사용
+	+ 한글 주소 부분만 해당 메서드로 감싸기
+	+ 받는 쪽에선 <code>decodeURIComponent()</code>로 복구
+
+	👾 data attribute & dataset
++ 서버에서 보내준 데이터를 보관하고 싶을 때 사용
+	+ html 태그 속성: data-
+	+ dataset으로 확인
+
+
+
+
+
+
 
 
 
