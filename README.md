@@ -312,6 +312,79 @@ then, catch, async, await 사용 가능.
 	+ html 태그 속성: data-
 	+ dataset으로 확인
 
+### ⭐️ `노드 기능` - 21.05.28(금)
+👾 노드의 콘솔 기능 REPL (Read, Eval, Print, Loop)
++ 노드의 콘솔은 코드를 읽고, 해석하고, 결과를 출력하고, 종료할 때 까지 반복한다.
++ 콘솔에서 REPL로 들어가는 명령어 <code>node</code>
+
+👾 모듈로 만들기
++ 모듈: 특정한 기능을 하는 함수, 변수들의 집합
+	+ 모듈로 만들어두면 여러 프로그램에 해당 모듈을 재사용 가능.
+	+ 방법: <code>module.exports</code>에 담기
+		+ 객체 뿐만 아니라 함수, 변수도 대입 가능.
+
++ ES2015 모듈 스타일
+	+ 방법: <code>import</code>, <code>export default</code>
+	+ 파일 확장자를 js로 하며 ES2015 모듈 사용 방법 :
+		+ package.json에 <code>type: 'module'</code> 속성 넣기.
+
+👾 노드 내장 객체
++ global 객체(전역객체) = 브라우저의 window 객체
+	+ 생략 가능 ex) global.require 👉🏻 require, global.console 👉🏻 console
+	+ window를 사용하지 않는 이유 : DOM이나 BOM이 없으므로
+	+ global 속성에 값을 넣어 파일 간 공유 가능. (권장하지 않음)
+	
++ global.console
+	+ <code>console.time & console.timeEnd</code>
+		+ console.timeEnd(레이블)과 대응되어 같은 레이블을 가진 time과 timeEnd 사이의 실행시간 측정
+	+ <code>console.table(배열)</code>
+		+ 배열 요소로 객체 리터럴을 넣으면 객체 속성들이 '테이블 형식'으로 표현됨.
+	+ <code>console.dir(객체, 옵션)</code>
+		+ 객체를 콘솔에 표시할 때 사용.
+		+ 옵션 colors: true로 하면 콘솔에 색이 추가되어 보기 편해짐.
+		+ 옵션 depth: 객체를 몇 단계까지 보여줄지 결정. 기본값 > 2
+	+ <code>console.trace(레이블)</code>
+		+ 에러 위치 추적. 보통 알려주기 때문에 잘 사용하지 않음.
+	+ ⭐️ __filename, __dirname
+		+ 현재 파일의 경로나 파일명을 알기 위해 사용.
+		+ <code>console.log(__filename)</code>
+			+ 실행시 현재 파일 경로의 파일명까지 나옴.
+		+ <code>console.log(__dirname)</code>
+			+ 실행시 현재 파일 경로까지 나옴.
+	+ module, exports, require
+		+ 🧐 exports
+			+ 모듈을 만들 때 module.exports 말고도 그냥 exports 객체로도 만들 수 있음.
+			+ module.exports와 exports는 같은 객체를 참조함.
+				+ <code>console.log(module.exports === exports)</code>
+			+ ❌ 단 객체만 사용할 수 있음.
+		+ 🧐 require
+			+ require === 함수, 함수 === 객체, 따라서 require === 객체
+			+ <code>require.cache</code>
+				+ 한번 require한 파일은 require.cache에 다 저장됨.
+			+ <code>require.cache</code>
+				+ 노드 실행 시 첫 모듈을 가리킴.
+				+ 현재 파일이 첫 모듈인지 아는 방법: <code>require.main === module</code>
+	+ node에서의 this
+		+ 최상위 스코프에 존재하는 <code>this === module.exports(exports 객체)</code>
+		+ 함수 선언부 내부의 <code>this === global 객체</code>
+	+ process
+		+ 현재 실행되고 있는 노드 프로세스에 대한 정보를 담고 있음.
+			+ 🧐 process.env
+			+ 시스템 환경변수
+			+ 서비스의 중요한 키를 저장하는 공간으로도 사용됨. ex) 비밀번호 등
+				+ <code>process.env.SECRET_ID</code>
+				+ <code>process.env.SECRET_CODE</code>
+			+ 🧐 process.nextTick(콜백)
+			+ microtask = process.nextTick , Promise
+				+ 이벤트루프가 다른 콜백함수보다 nextTick의 콜백 함수를 우선처리하도록 함.
+				+ promise 또한 다른 콜백보다 우선시됨.
+			+ 🧐 process.exit(코드)
+				+ 실행 중인 노드 프로세스 종료. 수동으로 노드를 멈추게 하기 위해 사용.
+
+
+
+
+
 
 
 
