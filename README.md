@@ -361,7 +361,7 @@ then, catch, async, await 사용 가능.
 			+ require === 함수, 함수 === 객체, 따라서 require === 객체
 			+ <code>require.cache</code>
 				+ 한번 require한 파일은 require.cache에 다 저장됨.
-			+ <code>require.cache</code>
+			+ <code>require.main</code>
 				+ 노드 실행 시 첫 모듈을 가리킴.
 				+ 현재 파일이 첫 모듈인지 아는 방법: <code>require.main === module</code>
 	+ node에서의 this
