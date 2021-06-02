@@ -11,7 +11,7 @@ reference: [Do it! Node.js 프로그래밍 by 정재곤](https://edu.goorm.io/le
 + 점표기법과 괄호표기법
   + 점표기법 : 유효한 변수 식별자일 경우 (공백X, 숫자시작X, $ or _ 제외한 특수 문자X)<br>
   + 괄호표기법 : 모든 표현식의 평가 결과를 property 키로 사용가능❕<br>
-	👉🏻 대괄호표기법은 런타임에 평가되기 때문에 사용자 입력에 따라 갑 변경 가능❕<br>
+	👉🏻 대괄호표기법은 런타임에 평가되기 때문에 사용자 입력에 따라 값 변경 가능❕<br>
 
 **✔️ Function**
 + 함수 선언식과 함수 표현식
@@ -307,7 +307,7 @@ then, catch, async, await 사용 가능.
 	+ 한글 주소 부분만 해당 메서드로 감싸기
 	+ 받는 쪽에선 <code>decodeURIComponent()</code>로 복구
 
-	👾 data attribute & dataset
+👾 data attribute & dataset
 + 서버에서 보내준 데이터를 보관하고 싶을 때 사용
 	+ html 태그 속성: data-
 	+ dataset으로 확인
@@ -380,6 +380,28 @@ then, catch, async, await 사용 가능.
 				+ promise 또한 다른 콜백보다 우선시됨.
 			+ 🧐 process.exit(코드)
 				+ 실행 중인 노드 프로세스 종료. 수동으로 노드를 멈추게 하기 위해 사용.
+
+
+### ⭐️ `노드 기능 - 노드 내장 모듈` - 21.06.02(수)
++ os 모듈
+	+ 운영체제 정보
+	+ 주로 컴퓨터 내부 자원에 빈번하게 접근하는 경우 사용.
+	+ 운영체제 별로 다른 서비스를 제공하고 싶을 때.
++ path 모듈
+	+ 폴더, 파일 경로를 쉽게 조작
+	+ 운영체제 별로 경로 구분자가 다르기 때문에 사용
+	+ 파일 경로에서 파일명/ 확장자만 따로 떼어주는 기능도 있음.
++ url 모듈
+	+ 인터넷 주소 쉽게 조작
+	+ <code>url.parse(주소)</code> : 주소분해
+	+ <code>url.format(객체)</code> : 분해된 주소 조립
+	+ <code>searchParams</code>
+		+ new URL로 myURL이라는 주소 객체를 만들면 그 안에 searchParams 객체가 있음.
+		+ search 부분을 조작하는 다양한 메서드 지원.
++ querystring 모듈
+	+ WHATWG 방식의 url 대신 기존 노드의 url을 사용시 search 부분 조작 모듈
+	+ <code>querystring.parse(query)</code> : url의 query 부분을 JS 객체로 분해
+	+ <code>querystring.stringify(객체)</code> 분해된 query 객체를 문자열로 다시 조립
 
 
 
