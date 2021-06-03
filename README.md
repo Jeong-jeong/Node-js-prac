@@ -403,6 +403,57 @@ then, catch, async, await 사용 가능.
 	+ <code>querystring.parse(query)</code> : url의 query 부분을 JS 객체로 분해
 	+ <code>querystring.stringify(객체)</code> 분해된 query 객체를 문자열로 다시 조립
 
+### ⭐️ `노드 기능 - 노드 내장 모듈` - 21.06.03(목)
++ crypto
+	+ 암호화 관련 모듈
+	+ 복호화
+		+ 암호화된 문자열을 원래대로 되돌리는 것.
+	+ 단방향 암호화
+		+ 복호화할 수 없는 암호화 방식
+		+ 주로 💕해시 기법💕 사용
+			+ 문자열을 고정된 길이의 다른 문자열로 바꾸는 방식.
+			+ <code>createHash(알고리즘)</code>: 사용할 해시 알고리즘
+				+ sha 512 주로 사용
+			+ <code>update(문자열)</code>: 변환할 문자열
+			+ <code>digest(인코딩)</code>: 인코딩할 알고리즘.
+				+ 변환된 문자열 반환.(base64, hex)
+				+ base64 : 결과 문자열이 가장 짧음.
+		+ 충돌
+			+ 다르게 입력된 문자열이 같은 문자열로 반환되는 현상.
+			+ 해킹용 컴퓨터가 이를 알아내 해킹.
+		+ 💕<code>pbkdf2 알고리즘</code>💕
+			+ 기존 문자열 + salt 문자열 * 반복(대략 10만 번)
+			+ <code>randomBytes()</code>: 64바이트 길이의 문자열 생성. = salt
+				+ randomBytes이므로 실행시마다 결과값 달라짐.
+			+ <code>pbkdf2(비밀번호, salt, 반복횟수, 출력바이트, 해시알고리즘)</code>
+	+ 양방향 암호화
+		+ 복호화 가능, key 필요
+		+ <code>createCipheriv(알고리즘, 키, iv)</code>
+		+ <code>cipher.update(문자열, 인코딩, 출력 인코딩)</code>
+			+ 보통 문자열은 utf8 인코딩
+			+ 출력 인코딩은 base64 많이 사용
+		+ <code>cipher.final(출력 인코딩)</code> : 암호화 완료
+		+ 복호화는 위 과정에 de만 넣으면 됨.
+
++ util module
+	+ 각종 편의 기능을 모아둔 모듈
+	+ <code>util.deprecate</code>: 함수가 deprecated 됐음을 알려줌.
+		+ 첫번째 인수로 함수를, 두번째 인수로 경고 메세지 넣기.
+	+ <code>util.promisify</code> 콜백 패턴을 프로미스 패턴으로 변경
+		
++ worker_threads
+	+ 노드에서 멀티 스레드 방식으로 작업
+
++ child_porcess
+	+ 노드에서 다른 프로그램을 실행하거라 명령을 수행하고자 할 때 사용.
+	+ <code>require('child_process').exec</code>
+	+ <code>const process = exec(명령어)</code>
+	+ <code>stdout</code> 표준출력(성공)
+	+ <code>stderr</code> 표준에러(에러)
+
+		
+			
+
 
 
 
