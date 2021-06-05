@@ -451,8 +451,71 @@ then, catch, async, await 사용 가능.
 	+ <code>stdout</code> 표준출력(성공)
 	+ <code>stderr</code> 표준에러(에러)
 
-		
-			
+
+### ⭐️ `노드 기능 - 파일 시스템 접근하기` - 21.06.04(금)
++ 👾 fs 모듈
+	+ 파일 시스템에 접근하는 모듈 (파일(폴더) 생성, 삭제, 읽기, 쓰기)
+	+ 읽기: <code>fs.readFile(경로, 콜백함수)</code>
+		+ readFile의 결과물은 Buffer 형식으로 제공되므로 toString으로 변환.
+		+ 보통은 프로미스 형식으로 바꿈.
+			+ <code>const fs = require('fs').promises</code>
+	+ Sync 메서드
+		+ 동기방식. 이전 작업 완료 후 다음 작업 진행
+		+ ex) <code>fs.readFileSync</code>
+	+ 파일을 읽거나 쓰는 두가지 방식
+		+ 💕 Buffer: 노드가 파일을 읽을 때 메모리에 파일 크기만큼의 공간을 마련하고, 파일데이터(buffer)를 메모리에 저장후 조작가능하게 함.
+			+ <code>Buffer.from(문자열)</code> : 문자열을 버퍼로 변환
+			+ <code>Buffer.alloc(바이트)</code> : 빈버퍼 생성
+			+ 버퍼의 단점!!
+				+ (메모리문제) 파일이 여러개일 수록 메모리에 그만큼의 버퍼를 만들어야 함.
+		+ 💕 Stream
+			+ 버퍼의 크기를 작게 해 여러번 나눠 보내는 방식
+				+ 파일 읽기: <code>createReadStream</code>
+				+ 파일 쓰기: <code>createWriteStream</code>
+				+ 나눠진 조각: chunk
+				+ 스트림끼리 연결하는 것: 파이핑하다
+				+ 동영상 같은 큰 파일 전송시 스트림을 사용함.
+
+
+### ⭐️ `노드 기능 - 기타 fs 메서드 알아보기` - 21.06.05(토)
++ 👾 fs 모듈 - 생성
+	+ <code>fs.access(경로, 옵션, 콜백)</code>
+		+ 폴더 / 파일에 접근 가능한 지 체크.
+		+ 옵션
+			+ <code>F_OK</code>: 파일 존재 여부
+			+ <code>R_OK</code>: 읽기 권한 여부
+			+ <code>W_OK</code>: 쓰기 권한 여부
+			+ 파일 / 폴더 권한이 업다면 에러 발생 : 'ENOENT'
+	+ <code>fs.mkdir(경로, 콜백)</code>
+		+ 폴더 만드는 메서드.
+		+ 이미 폴더가 있다면 에러 발생하므로 access 메서드로 우선 확인.
+	+ <code>fs.open(경로, 옵션, 콜백)</code>
+		+ 파일의 아이디(fd 변수)를 가져오는 메서드.
+		+ 파일이 없다면 경로에 파일 생성 후 그 아이디를 가져옴.
+		+ 가져온 아이디로 <code>fs.read</code>, <code>fs.write</code>로 읽거나 쓸 수 있음.
+		+ 두번째 인수로 w(쓰기), r(읽기), a(추가) 설정.
+	+ <code>fs.rename(경로, 옵션, 콜백)</code>
+		+ 파일 이름 바꾸는 메서드.
+
++ 👾 fs 모듈 - 삭제
++ <code>fs.readdir(경로, 콜백)</code>
+	+ 폴더 안의 내용물 확인. 
++ <code>fs.readdir(경로, 콜백)</code>
+	+ 파일 삭제.
+	+ 파일이 없다면 에러 발생
++ <code>fs.readdir(경로, 콜백)</code>
+	+ 폴더 삭제.
+	+ 폴더 안에 파일이 있다면 에러 발생하므로, 먼저 내부 파일을 모두 지워야 함.
+	
++	<code></code>
++ 👾 fs 모듈 - 복사
+	+	<code>fs.copyFile(복사할 파일, 복사될 경로, 콜백)</code>
+
++ 👾 fs 모듈 - 변경 사항 감시
+	+	<code></code>
+
+
+
 
 
 
