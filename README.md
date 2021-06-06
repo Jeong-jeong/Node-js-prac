@@ -515,9 +515,31 @@ then, catch, async, await 사용 가능.
 	+	<code></code>
 
 
+### ⭐️ `노드 기능 - 기타 fs 메서드 알아보기` - 21.06.06(일)
++ 👾 스레드풀
+	+ 미리 생성해 놓은 스레드를 모아둔 묶음.
+	+ 작업을 동시에 처리.
+	+ 스레드풀 개수 제한: 터미널에 <code>UV_THREADPOOL_SIZE = 숫자</code> 입력.
 
-
-
++ 👾 event
+	+	<code>on(이벤트명, 콜백)</code>
+		+ 이벤트명과 발생 시 콜백 연결. (이벤트 리스닝)
+	+	<code>addListener(이벤트명, 콜백)</code> 
+		+ on과 동일
+	+	<code>emit(이벤트명)</code>
+		+ 이벤트 호출
+	+	<code>once(이벤트명, 콜백)</code>
+		+ 한 번만 실행되는 이벤트.
+	+	<code>removeAllListeners(이벤트명)</code>
+		+ 이벤트에 연결된 모든 이벤트 리스너 제거
+	+	<code>removeListener(이벤트명, 리스너)</code>
+		+ 이벤트에 연결된 리스너를 하나씩 제거
+	+	<code>off(이벤트명, 콜백)</code>
+		+ <code>removeListener</code>와 동일
+	+	<code>listenerCount(이벤트명)</code>
+		+ 현재 리스너가 몇 개 연결됐는지 확인.
+	+	<code></code>
+		+ 
 
 
 
