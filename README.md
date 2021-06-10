@@ -598,7 +598,7 @@ then, catch, async, await 사용 가능.
 + 포트 충돌
 	+ Error: listen EADDRINUSE ::: 포트번호
 
-+ 상태코드
++ 	http 상태코드
 	+ 2**: 성공
 		+ 200: 성공, 201: 작성됨
 	+ 3**: 리다이렉션 (다른 페이지로 이동)
@@ -608,6 +608,24 @@ then, catch, async, await 사용 가능.
 	+ 5**: 서버 오류
 		+ 500: 내부 서버 오류, 502: 불량 게이트웨이, 503: 서비스를 이용할 수 없음.
 		
+
+
+### ⭐️ `http 모듈로 서버 만들기 - REST * 라우팅` - 21.06.10(목)
++ 👾 REST (REpresentational State Transfer)
+	+ 주소를 정하는 규칙
+	+ 자원: 서버가 행할 수 있는 모든 것.
+	+ HTTP 요청 메서드(GET, POST, PUT, PATCH, DELETE, OPTIONS)
+		+ GET: 서버 자원을 가져올 때
+		+ POST: 서버에 자원을 새로 등록할 때 / 애매할 때
+		+ PUT: 서버 자원을 아예 치환할 때
+		+ PATCH: 서버 자원을 일부 수정할 때
+		+ DELETE: 서버 자원을 삭제할 때
+	+ RESTful한 웹 서버
+		+ REST 방식대로 서버 주소를 체계적으로 정리했음을 의미.
+
++ HTTP 프로토콜
+	+ 언어에 상관없이 모든 서버와 클라이언트 간의 약속
+	
 
 
 
